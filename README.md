@@ -1,4 +1,4 @@
-# 🛒 Swift-Tribe Shop (Full-Stack E-Commerce Platform)
+# 🛒 Tee-Tribe Shop 
 
 **🔗 Live Application:** [Vercel App Link](https://tee-tribe.vercel.app/)
 
