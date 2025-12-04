@@ -1,73 +1,105 @@
-# Welcome to your Lovable project
+# 🛒 Swift-Tribe Shop (Full-Stack E-Commerce Platform)
 
-## Project info
+**🔗 Live Application:** [Vercel App Link](https://tee-tribe.vercel.app/)
 
-**URL**: https://lovable.dev/projects/72baf6ba-b5ad-4b70-b385-2b533531ab42
 
-## How can I edit this code?
 
-There are several ways of editing your application.
+A fully featured **E-Commerce Web Application** built with:
 
-**Use Lovable**
+* **React + Vite + TypeScript** Frontend
+* **FastAPI** Backend
+* **Stripe** Payment Processing
+* **Supabase** Authentication
+* **MongoDB** / **PostgreSQL** Database
+* **Render** & **Vercel** Deployment
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/72baf6ba-b5ad-4b70-b385-2b533531ab42) and start prompting.
+This platform supports user shopping features, secure checkout, order history, and a complete **Admin Dashboard** with role-based access.
 
-Changes made via Lovable will be committed automatically to this repo.
+## ✨ Features
 
-**Use your preferred IDE**
+### 👤 User Features
+* 🔐 Authentication (**Supabase**)
+* 🛍️ Browse products
+* 🔎 Search & filter
+* 🛒 Add to cart
+* 💳 **Stripe** payments (test & live)
+* ⭐ Product reviews
+* 📦 Order history
+* 📱 Responsive UI
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+### 🛠️ Admin Features
+* 👑 Admin role authentication
+* 📦 Product CRUD (Create, Read, Update, Delete)
+* 🏷️ Category management
+* 📊 Dashboard analytics
+* 🧾 Orders & customers list
+* 💳 Payments overview
+* ⭐ Review management
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+---
 
-Follow these steps:
+## 📸 Screenshots
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+| Description | Screenshot |
+| :--- | :--- |
+| **🏠 Homepage** | ![Homepage](screens/home.png) |
+| **🛍️ Product Page** | ![Product Page](screens/shop.png) ![Review Section](screens/reviews.png) |
+| **🛒 Cart & Checkout** | ![Checkout Page](screens/checkout.png) ![Cart View](screens/cart.png) |
+| **🛠️ Admin Dashboard** | ![Admin Dashboard Overview](screens/admin_panel.png) ![Edit Product Panel](screens/edit_product.png) |
 
-# Step 3: Install the necessary dependencies.
-npm i
+---
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
+## 🧱 Tech Stack
 
-**Edit a file directly in GitHub**
+### Frontend
+* **React 18**
+* **Vite**
+* **TypeScript**
+* **TailwindCSS**
+* **Stripe.js**
+* **Supabase** Auth
+* **Axios**
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+### Backend
+* **FastAPI**
+* **Uvicorn**
+* **Stripe Python SDK**
+* **MongoDB** / **PostgreSQL**
+* **Python-dotenv**
+* **Pydantic v2**
 
-**Use GitHub Codespaces**
+### Deployment
+* **Vercel** (Frontend)
+* **Render** (Backend)
+* **Stripe Webhooks**
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+---
 
-## What technologies are used for this project?
+## 📁 Project Structure
 
-This project is built with:
+swift-tribe-shop-main/
+│
+├── api_server/
+│   ├── main.py             # FastAPI App Entry
+│   ├── db.py               # Database connection/models setup
+│   ├── models.py           # Pydantic and Database Models
+│   ├── requirements.txt
+│   └── scripts/
+│
+├── src/
+│   ├── components/
+│   ├── contexts/
+│   ├── pages/
+│   ├── integrations/supabase/
+│   └── App.tsx
+│
+├── supabase/               # Supabase setup files
+│   └── migrations/
+│
+├── public/                 # Static assets
+└── package.json
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+---
 
-## How can I deploy this project?
 
-Simply open [Lovable](https://lovable.dev/projects/72baf6ba-b5ad-4b70-b385-2b533531ab42) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
