@@ -1,0 +1,26 @@
+fastapi==0.110.0
+uvicorn[standard]==0.29.0
+pydantic==2.6.3
+pydantic-core==2.16.3
+python-dotenv==1.0.1
+
+# CORS middleware
+starlette==0.36.3
+
+# MongoDB (if your DB uses Mongo — your db.py suggests this)
+pymongo==4.6.1
+
+# Stripe payments
+stripe==8.6.0
+
+# For async HTTP calls (optional but common)
+httpx==0.26.0
+
+# If using Supabase admin API (optional for server-side actions)
+supabase==2.4.3
+
+# For datetime/timezone reliability
+python-dateutil==2.9.0
+
+# Optional — if using Jinja2 templates
+jinja2==3.1.3
