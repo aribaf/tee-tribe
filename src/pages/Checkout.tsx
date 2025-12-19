@@ -157,6 +157,34 @@ const handleSubmit = async (e: React.FormEvent) => {
                 </div>
               </div>
             </div>
+            <Button
+  type="button"
+  size="lg"
+  className="w-full mt-4 bg-secondary hover:bg-secondary/90"
+  onClick={async () => {
+    setIsProcessing(true);
+    try {
+      const res = await fetch(`${API_BASE}/payments/stripe/create-session`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          items,
+          user_id: USER_ID,
+        }),
+      });
+
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.detail || "Stripe error");
+
+      window.location.href = data.url; // 🔥 redirect to Stripe
+    } catch (err: any) {
+      toast.error(err.message);
+      setIsProcessing(false);
+    }
+  }}
+>
+  PAY WITH CARD (STRIPE)
+</Button>
 
             {/* Payment Method */}
             <div className="border-4 border-muted p-6">

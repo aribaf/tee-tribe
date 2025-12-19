@@ -10,6 +10,17 @@ from fastapi.middleware.cors import CORSMiddleware
 from bson import ObjectId
 from pymongo import MongoClient
 from groq import Groq
+from dotenv import load_dotenv
+load_dotenv()   # ✅ FIRST
+
+import stripe
+import os
+
+stripe.api_key = os.getenv("STRIPE_SECRET_KEY")
+FRONTEND_URL = os.getenv("FRONTEND_URL", "http://localhost:8000")
+
+if not stripe.api_key:
+    print("❌ STRIPE_SECRET_KEY is missing")
 
 # your local models
 from models import Product, Review  # adjust if unused
@@ -624,3 +635,42 @@ def get_customers():
 def get_products_summary():
     total = products_col.count_documents({})
     return {"total_products": total}
+
+@app.post("/payments/stripe/create-session")
+def create_stripe_session(data: dict = Body(...)):
+    try:
+        items = data.get("items", [])
+        user_id = data.get("user_id", "guest_user")
+
+        if not items:
+            raise HTTPException(status_code=400, detail="Cart is empty")
+        USD_RATE = 280 
+        line_items = []
+        for item in items:
+            line_items.append({
+                "price_data": {
+                    "currency": "usd",
+                    "product_data": {
+                        "name": item["name"],
+                    },
+                    "unit_amount": int((item["price"] / USD_RATE) * 100),  # Stripe uses cents
+                },
+                "quantity": item["quantity"],
+            })
+
+        session = stripe.checkout.Session.create(
+            payment_method_types=["card"],
+            mode="payment",
+            line_items=line_items,
+            success_url=f"{FRONTEND_URL}/payment-success?session_id={{CHECKOUT_SESSION_ID}}",
+            cancel_url=f"{FRONTEND_URL}/checkout",
+            metadata={
+                "user_id": user_id,
+            }
+        )
+
+        return {"url": session.url}
+
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
